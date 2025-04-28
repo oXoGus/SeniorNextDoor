@@ -26,8 +26,8 @@
                 <img class="filter" src="filter.svg" alt = "filter">
             </div>
         </div>
-        <?php include('annuaireContact.php');?>
+        <?php include('controlleur/annuaireContact.php');?>
     </div>
-    <script src="annuaire.js"> </script>
+    <script src="script/annuaire.js"> </script>
   </body>
 </html>

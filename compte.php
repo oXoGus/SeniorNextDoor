@@ -14,7 +14,7 @@
     
     <div class="fexRowCenter">
         <img src="img/waveLeft.svg" alt="">
-        <div class="loginContainer" style="height: auto;">
+        <div class="loginContainer" >
             <form action="createAcount.php" method="post">
             <h2 style="margin: 10px;">Modifier votre compte</h2>
                 <div style="margin: 10px;">
@@ -36,7 +36,7 @@
             </form>
         </div>
         <img src="img/waveRight.svg" alt="">
-        <a href="profil"><img id="btnBack" src="img/btnBack.svg" alt=""></a>
+        <a href="profil.html"><img id="btnBack" src="img/btnBack.svg" alt=""></a>
     </div>
 </body>
 </html>

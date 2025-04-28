@@ -15,7 +15,7 @@
     <div class="fexRowCenter">
         <img src="img/waveLeft.svg" alt="">
         <div class="loginContainer" style="height: auto;">
-            <form action="createAcount.php" method="post">
+            <form action="controlleur/createAcount.php" method="post">
             <h2 style="margin: 10px;">Connexion</h2>
                 <div style="margin: 10px;">
                     <p>Adresse Mail</p>

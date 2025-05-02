@@ -1,15 +1,24 @@
-CREATE TABLE ephad(
-   id_ephad serial,
+CREATE TABLE ehpad(
+   id_ehpad serial,
    nom VARCHAR(50) ,
-   localisation VARCHAR(75) ,
-   PRIMARY KEY(id_ephad)
+   localisation VARCHAR(75),
+   num_tel VARCHAR(14),
+   PRIMARY KEY(id_ehpad)
 );
+
+INSERT INTO ehpad (id_ehpad, nom, localisation, num_tel) VALUES (1, 'NOISY-EHPAD', '17 Rue de la Croix Biche, 93160', '01 20 30 40 50');
 
 CREATE TABLE statut(
    code_statut CHAR(3) ,
    lib_statut VARCHAR(50) ,
    PRIMARY KEY(code_statut)
 );
+
+INSERT INTO statut (code_statut, lib_statut) VALUES 
+('NPD', 'ne pas déranger'), 
+('INA', 'inactif'),
+('HOL', 'hors ligne'),
+('ENL', 'en ligne');
 
 CREATE TABLE evenement_perso(
    lib_evenement SMALLINT,
@@ -22,17 +31,17 @@ CREATE TABLE utilisateur(
    nom VARCHAR(50) ,
    prenom VARCHAR(50) ,
    date_naissance DATE,
-   pseudo VARCHAR(50) ,
+   pseudo VARCHAR(50) NOT NULL ,
    date_inactif TIMESTAMP,
    avatar BYTEA,
    bio VARCHAR(50) ,
    loisir VARCHAR(50) ,
    sexe CHAR(1) ,
    code_statut CHAR(3) NOT NULL,
-   id_ephad SMALLINT NOT NULL,
+   id_ehpad SMALLINT NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(code_statut) REFERENCES statut(code_statut),
-   FOREIGN KEY(id_ephad) REFERENCES ephad(id_ephad)
+   FOREIGN KEY(id_ehpad) REFERENCES ehpad(id_ehpad)
 );
 
 CREATE TABLE calendrier(
@@ -41,24 +50,21 @@ CREATE TABLE calendrier(
    nbinscrit INTEGER,
    date_e TIMESTAMP,
    lieu VARCHAR(50) ,
-   id INTEGER NOT NULL,
-   PRIMARY KEY(id_evenement),
-   FOREIGN KEY(id) REFERENCES utilisateur(id)
+   PRIMARY KEY(id_evenement)
 );
 
 CREATE TABLE compte(
    login VARCHAR(25),
-   mdp VARCHAR(20),
-   id serial,
+   mdp VARCHAR(50),
+   id integer,
    PRIMARY KEY(login),
    UNIQUE(id),
    FOREIGN KEY(id) REFERENCES utilisateur(id)
 );
 
 CREATE TABLE message(
-   id_emeteur serial,
+   id_emeteur integer,
    id_destinataire INTEGER,
-   id_message serial,
    date_message TIMESTAMP,
    contenu_message VARCHAR(200) ,
    vue integer ,
@@ -78,10 +84,10 @@ CREATE TABLE ami(
 
 CREATE TABLE bloquer(
    id_utilisateur integer,
-   id_autre_utilisateur integer,
-   PRIMARY KEY(id_utilisateur, id_autre_utilisateur),
+   id_utilisateur_bloque integer,
+   PRIMARY KEY(id_utilisateur, id_utilisateur_bloque),
    FOREIGN KEY(id_utilisateur) REFERENCES utilisateur(id),
-   FOREIGN KEY(id_autre_utilisateur) REFERENCES utilisateur(id)
+   FOREIGN KEY(id_utilisateur_bloque) REFERENCES utilisateur(id)
 );
 
 CREATE TABLE calendrier_perso(

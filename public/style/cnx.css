@@ -80,7 +80,6 @@ textarea {
     color: black; 
     width: calc(100% - 5px);
     height: 100px;
-
     resize: none;
     border-radius: 10px;
     border: none;
@@ -96,3 +95,10 @@ textarea {
     left: 20px;
     z-index: 1;
 } 
+
+.err {
+    font-weight: bold;
+    font-size: 28px;
+    color: rgb(226, 69, 69);
+    text-align: center;
+}

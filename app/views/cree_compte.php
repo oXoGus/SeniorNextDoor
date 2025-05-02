@@ -13,18 +13,12 @@
     <title>Créer un compte</title>
 </head>
 <body>
-    <?php
-        // gestion des erreurs 
-        if (isset($err)){
-            echo "<script>alert($err)</script>";
-            unset($err);
-        }
-    ?>
+    
     <div class="fexRowCenter">
         <img src="img/waveLeft.svg" alt="">
         <div class="loginContainer" style="height: auto;">
             <form action="cree_compte.php" method="get">
-            <h2 style="margin: 10px;">Créer votre compte</h2>
+                <h2 style="margin: 10px;">Créer votre compte</h2>
                 <div style="margin: 10px;">
                     <p>Adresse Mail</p>
                     <input type="text" name="login" required>
@@ -33,11 +27,20 @@
                     <p>Confirmer le mot de passe</p>
                     <input type="text" name="mdpConf" required>
                     <input id="submitBtn" type="submit" value="Créer votre compte">
+                    
                 </div> 
             </form>
-            <p style="text-align: center;">J'ai déja un compte ? <a href="connexion.html">Se connecter</a></p>
+            <?php
+                // gestion des erreurs 
+                if (isset($err)){
+                    echo "<p class=\"err\">$err</p>";
+                    unset($err);
+                }
+            ?>
+            <p style="text-align: center;">J'ai déja un compte ? <a href="connexion.php">Se connecter</a></p>
         </div>
         <img src="img/waveRight.svg" alt="">
     </div>
+    
 </body>
 </html>

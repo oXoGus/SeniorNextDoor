@@ -1,4 +1,6 @@
 <?php
+
+    $originDIR = __DIR__."/.."; // pour les chemins absolus
     // on appel toujours le controlleur
-    include('../app/controllers/cree_compte.php')
+    include($originDIR.'/app/controllers/cree_compte.php')
 ?>

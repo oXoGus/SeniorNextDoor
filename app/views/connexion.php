@@ -16,7 +16,7 @@
     <div class="fexRowCenter">
         <img src="img/waveLeft.svg" alt="">
         <div class="loginContainer">
-            <form action="auth.php" method="post">
+            <form action="connexion.php" method="grt">
             <h2 style="margin: 10px;">Connexion</h2>
                 <div style="margin: 10px;">
                     <p>Adresse Mail</p>
@@ -27,7 +27,14 @@
                 </div>
                 
             </form>
-            <p style="text-align: center;">Je n'ai pas de compte ? <a href="cree_compte.html">Créer un compte</a></p>
+            <?php
+                // gestion des erreurs 
+                if (isset($err)){
+                    echo "<p class=\"err\">$err</p>";
+                    unset($err);
+                }
+            ?>
+            <p style="text-align: center;">Je n'ai pas de compte ? <a href="cree_compte.php">Créer un compte</a></p>
         </div>
         <img src="img/waveRight.svg" alt="">
     </div>

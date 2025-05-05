@@ -17,7 +17,7 @@
     <a href="profil.html">
     <img src="img/GigaChad.png" alt="Photo de profil">
 </a>
-    <p><b>Nom du profil</b></p>
+    <p><b><?php echo $val->pseudo;?></b></p>
 </div>
 <div class="menu">
     <a href="annuaire.php"><img src="img/Annuaire.png"></a>

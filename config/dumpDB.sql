@@ -68,7 +68,7 @@ CREATE TABLE message(
    date_message TIMESTAMP,
    contenu_message VARCHAR(200) ,
    vue integer ,
-   PRIMARY KEY(id_emeteur, id_destinataire),
+   PRIMARY KEY(id_emeteur, id_destinataire, date_message),
    FOREIGN KEY(id_emeteur) REFERENCES utilisateur(id),
    FOREIGN KEY(id_destinataire) REFERENCES utilisateur(id)
 );

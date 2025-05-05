@@ -24,13 +24,17 @@
             exit;
         }
 
+        // recupéeration des données de tout la première ligne 
+        $val = $res->fetch(PDO::FETCH_OBJ);
+
         // le compte a bien été crée 
         // on connecte directement le joueur en mettant ces 
         // credantials dans la session 
         session_start();
         
         $_SESSION['login'] = $login;
-        $_SESSION['mdp'] = $mdp;
+        $_SESSION['mdp'] = $val->mdp; // on met le hash du mdp pour des raison de sécurité 
+        $_SESSION['id'] = $id;
 
         // on redirect l'utilisateur sur la page home
         header('location: /SeniorNextDoor/home.php');

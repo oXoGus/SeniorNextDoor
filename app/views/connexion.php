@@ -20,9 +20,9 @@
             <h2 style="margin: 10px;">Connexion</h2>
                 <div style="margin: 10px;">
                     <p>Adresse Mail</p>
-                    <input type="text" name="login">
+                    <input type="text" name="login" required>
                     <p>Mot de passe</p>
-                    <input type="text" name="mdp" >
+                    <input type="text" name="mdp" required>
                     <input id="submitBtn" type="submit" value="se connecter">
                 </div>
                 

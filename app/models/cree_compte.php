@@ -18,7 +18,7 @@
         
         $id = $res->fetch(PDO::FETCH_OBJ)->id;
 
-        $res = $cnx->exec("INSERT INTO compte (id, login, mdp) VALUES ($id, ".$cnx->quote($login).", md5(".$cnx->quote($mdp)."))");
+        $res = $cnx->query("INSERT INTO compte (id, login, mdp) VALUES ($id, ".$cnx->quote($login).", md5(".$cnx->quote($mdp).")) RETURNING mdp");
 
         $cnx->commit();
     }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="Main-perso.js" defer></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier Global</title>
+    <link rel="stylesheet" href="../Stylesheet.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav-buttons">
+            <div class="calenderSelection">
+                <button onclick="location.href='home.html'"><img src="Home.svg" alt="Home"></button>
+                <button onclick="location.href='../CalendrierGlobal/CalendrierGlobal.html'">Calendrier Global</button>
+
+            </div>
+
+            <button class="active"><img src="CalendarArrowRight.svg" alt="Calendrier Personnel">Calendrier personnel</button>
+        </div>
+    </header>
+    <main>
+
+        <section class="calendar-section-perso">
+            <div class="calendar-header">
+                <button id="prev-month"><img src="CalendarArrowLeft.svg" alt="Previous month"></button>
+                <div class="monthYear" id="monthYear"></div>
+                <button id="next-month"><img src="CalendarArrowRight.svg" alt="Next month"></button>
+            </div>
+            <div class="days">
+                <div class="day">Lun</div>
+                <div class="day">Mar</div>
+                <div class="day">Mer</div>
+                <div class="day">Jeu</div>
+                <div class="day">Ven</div>
+                <div class="day">Sam</div>
+                <div class="day">Dim</div>
+            </div>
+            <div class="dates" id="dates"></div>
+        </section>
+        <section class="event-details-perso">
+            <div class="description">
+                <h2>Survolez une date</h2>
+                <p>Survolez une date pour voir les évênements qui lui sont associés</p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

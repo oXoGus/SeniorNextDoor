@@ -9,15 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">  
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="profil">
-    <a href="profil.html">
-    <img src="img/GigaChad.png" alt="Photo de profil">
+    <a href="profil.php">
+    <img class="avatar" src="<?php echo $user->avatar ?>" alt="votre avatar">
 </a>
-    <p><b><?php echo $val->pseudo;?></b></p>
+    <p><b><?php echo $user->pseudo ?></b></p>
 </div>
 <div class="menu">
     <a href="annuaire.php"><img src="img/Annuaire.png"></a>

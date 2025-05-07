@@ -1,5 +1,5 @@
 <?php
     // page dynamique, on appel le controlleur de la page home
-    include('')
-
+    $originDIR = __DIR__."/..";
+    include('../app/controllers/profil.php');
 ?>

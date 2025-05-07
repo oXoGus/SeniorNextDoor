@@ -20,7 +20,7 @@
             <form action="cree_compte.php" method="get">
                 <h2 style="margin: 10px;">Créer votre compte</h2>
                 <div style="margin: 10px;">
-                    <p>Adresse Mail</p>
+                    <p>Votre nom d'utilisateur</p>
                     <input type="text" name="login" required>
                     <p>Mot de passe</p>
                     <input type="text" name="mdp" required>

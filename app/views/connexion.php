@@ -16,7 +16,7 @@
     <div class="fexRowCenter">
         <img src="img/waveLeft.svg" alt="">
         <div class="loginContainer">
-            <form action="connexion.php" method="grt">
+            <form action="connexion.php" method="get">
             <h2 style="margin: 10px;">Connexion</h2>
                 <div style="margin: 10px;">
                     <p>Adresse Mail</p>

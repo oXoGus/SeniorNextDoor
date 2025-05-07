@@ -9,7 +9,7 @@ session_start(); // ATTENTION : ne pas mettre d'espace ou de tab avant le sessio
         $login = $_SESSION['login'];
         $mdp = $_SESSION['mdp'];
         $id = $_SESSION['id'];
-
+        
         // requete de verification
         // recuperation du hash
         $res = $cnx->query("SELECT * FROM compte where id = $id and login = ".$cnx->quote($login)." and mdp = ".$cnx->quote($mdp));

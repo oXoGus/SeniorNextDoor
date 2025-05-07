@@ -37,3 +37,8 @@ html, body {
 .profil p {
     margin-left : 50px;
 }
+
+.avatar {
+    width: 200px;
+    height: auto;
+}

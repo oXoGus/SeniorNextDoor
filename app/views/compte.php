@@ -17,28 +17,53 @@
     <div class="fexRowCenter">
         <img src="img/waveLeft.svg" alt="">
         <div class="loginContainer" >
-            <form action="createAcount.php" method="post">
+            <!-- ne pas oublier le enctype="multipart/form-data" et le post pour upload l'avatar-->
+            <form enctype="multipart/form-data" action="compte.php" method="POST">
             <h2 style="margin: 10px;">Modifier votre compte</h2>
                 <div style="margin: 10px;">
-                    <p>Nom</p>
-                    <input type="text" name="nom">
-                    <p>Prénom</p>
-                    <input type="text" name="prenom">
-                    <p>Date de naissance</p>
-                    <input type="date" name="dateNaiss" id="">
                     <p>Nom que les autres utilisateurs verront</p>
-                    <input type="text" name="pseudo">
-                    <p>Votre avatar</p>
-                    <input type="file" name="avatar" id="" text="Choisir une image" accept="image/*">
+                    <input type="text" name="pseudo" value=<?php echo "\"".$user->pseudo."\""?>>
+                    <p>Votre avatar actuel</p>
+                    <div class="containerVertialCenter" >
+                        <img class="avatar" src="<?php echo $user->avatar ?>" alt="votre avatar">
+                    </div>
+                    <p>Pour changer votre avatar</p>
+                    <input type="file" name="avatar" id="avatar" text="Choisir une image" accept="image/*" >
                     <p>Une courte phrase pour vous décrire</p>
-                    <textarea name="bio" id=""></textarea>
+                    <textarea name="bio" id="" ><?php echo $user->bio ?></textarea>
+                    <p>Votre statut</p>
+                    <div style="display: flex; justify-content: space-around">
+                        <div class="containerVertialCenter">
+                            
+                            <input type="radio" name="code_statut" value="ENL" id="btnRadio" <?php  if ($user->code_statut == "ENL"){ echo"checked"; } ?>> 
+                            <p>en ligne</p>
+                        </div>
+                        <div class="containerVertialCenter">
+                            <input type="radio" name="code_statut" value="NPD" id="btnRadio" <?php if ($user->code_statut == "NPD"){ echo"checked"; } ?>>
+                            <p>ne pas déranger</p>
+                        </div>
+                        <div class="containerVertialCenter">
+                            <input type="radio" name="code_statut" value="INA" id="btnRadio" <?php if ($user->code_statut == "INA"){ echo"checked"; } ?>>
+                            <p>inactif</p>
+                        </div>
+                    </div>
                     <input id="submitBtn" type="submit" value="Enregristrer les modifications">
                 </div>
-                
             </form>
+            <?php
+                // gestion des erreurs 
+                if (isset($err)){
+                    echo "<p class=\"err\">$err</p>";
+                    unset($err);
+                }
+                if (isset($message)){
+                    echo "<p class=\"msg\">$message</p>";
+                    unset($message);
+                }
+            ?>
         </div>
         <img src="img/waveRight.svg" alt="">
-        <a href="profil.html"><img id="btnBack" src="img/btnBack.svg" alt=""></a>
+        <a href="profil.php"><img id="btnBack" src="img/btnBack.svg" alt=""></a>
     </div>
 </body>
 </html>

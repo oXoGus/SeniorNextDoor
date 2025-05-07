@@ -102,3 +102,31 @@ textarea {
     color: rgb(226, 69, 69);
     text-align: center;
 }
+
+.msg {
+    font-weight: bold;
+    font-size: 28px;
+    color: white;
+    text-align: center;
+}
+
+.avatar {
+    max-width: 200px;
+    height: auto;
+}
+
+.containerVertialCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    margin-bottom: 30px;
+} 
+
+#btnRadio {
+    width: 30px;
+    height: 30px;
+}
+

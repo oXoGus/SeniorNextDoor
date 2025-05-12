@@ -1,0 +1,39 @@
+html, body {
+    background-color: #7C9473;
+    width: 100%;
+    height: 100%;
+    margin : 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.profil {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    display : flex;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    color : #F9F0F8;
+    font-size: 3em;
+    margin : 20px;
+}
+
+.menu {
+    display : flex;
+    justify-content: space-evenly;
+    background-color: #464850;
+    align-items: center;
+    box-shadow: 0px 5px 15px black;
+    margin : 0;
+    align-self: center;
+    padding: 40px;
+    width: 100%;
+}
+
+.profil p {
+    margin-left : 50px;
+}

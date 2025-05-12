@@ -20,11 +20,6 @@ INSERT INTO statut (code_statut, lib_statut) VALUES
 ('HOL', 'hors ligne'),
 ('ENL', 'en ligne');
 
-CREATE TABLE evenement_perso(
-   lib_evenement SMALLINT,
-   date_rdv TIMESTAMP,
-   PRIMARY KEY(lib_evenement)
-);
 
 CREATE TABLE utilisateur(
    id SERIAL,
@@ -45,14 +40,7 @@ CREATE TABLE utilisateur(
    FOREIGN KEY(id_ehpad) REFERENCES ehpad(id_ehpad)
 );
 
-CREATE TABLE calendrier(
-   id_evenement SERIAL,
-   event VARCHAR(50) ,
-   nbinscrit INTEGER,
-   date_e TIMESTAMP,
-   lieu VARCHAR(50) ,
-   PRIMARY KEY(id_evenement)
-);
+
 
 CREATE TABLE compte(
    login VARCHAR(25),
@@ -91,10 +79,27 @@ CREATE TABLE bloquer(
    FOREIGN KEY(id_utilisateur_bloque) REFERENCES utilisateur(id)
 );
 
+CREATE TABLE evenement(
+   id_evenement SERIAL,
+   titre_evenement VARCHAR(50) NOT NULL,
+   desc_evenement VARCHAR(200),
+   nom_image VARCHAR(50),
+   PRIMARY KEY(id_evenement)
+);
+
 CREATE TABLE calendrier_perso(
    id_utilisateur INTEGER,
-   lib_evenement SMALLINT,
-   PRIMARY KEY(id_utilisateur, lib_evenement),
+   date_evenement DATE,
+   id_evenement INTEGER,
+   PRIMARY KEY(id_utilisateur, date_evenement),
    FOREIGN KEY(id_utilisateur) REFERENCES utilisateur(id),
-   FOREIGN KEY(lib_evenement) REFERENCES evenement_perso(lib_evenement)
+   FOREIGN KEY(id_evenement) REFERENCES evenement(id_evenement)
+);
+
+CREATE TABLE calendrier_global(
+   date_evenement DATE,
+   id_evenement SERIAL,
+   nb_inscrit INTEGER,
+   PRIMARY KEY(date_evenement),
+   FOREIGN KEY(id_evenement) REFERENCES evenement(id_evenement)
 );

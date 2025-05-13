@@ -20,6 +20,10 @@
 
         $res = $cnx->query("INSERT INTO compte (id, login, mdp) VALUES ($id, ".$cnx->quote($login).", md5(".$cnx->quote($mdp).")) RETURNING mdp");
 
+        // on ajoute en ami autaumatiquement l'admin
+        $query = $cnx->exec("INSERT INTO ami (id_utilisateur, id_ami, date_ajout) VALUES ($id, 0, CURRENT_TIMESTAMP)");
+        $query = $cnx->exec("INSERT INTO ami (id_utilisateur, id_ami, date_ajout) VALUES (0, $id, CURRENT_TIMESTAMP)");
+
         $cnx->commit();
     }
     catch (PDOException $e){

@@ -32,30 +32,27 @@
                       echo "<p class=\"username\">".$user->pseudo."</p>\n";
                       echo "<p class=\"userStatus ".$user->code_statut."\">".$user->lib_statut."</p>\n";
                     echo "</div>\n";
-                  echo "</div\n>";
+                  echo "</div>\n";
                   echo "<div class=\"userIconsContainer\">\n";
                     // on n'affiche pas les icones pour s'ajouter soit meme en ami ou se bloquer soit meme
                     if ($user->id === $id){
                       echo "<p>c'est vous</p>\n";
+                    } elseif($user->id === 0) {
+                      echo "<p>admin</p>";
                     } else {
-                    
+                      if ($user->ami === "demande en attente") {
+                        echo "<p>".$user->ami."</p>";
+                      } elseif ($user->ami === true){
+                        echo "<img style=\"margin-bottom: 3px; padding-right: 5px\"src=\"img/Friend.svg\"/>\n";
+                      }
                       // on change la couleur des icones si l'utilisateur est bloqué ou non 
                       echo "<a href=\"addFriend.php?id=".$user->id."&searchInput=$pseudoSearched\">\n";
                       if ($user->ami){
                         echo "<img src=\"img/deleteFriend.svg\"/>\n";
-
                       } else{
                         echo "<img src=\"img/addFriendIcon.svg\"/>\n";
                       } 
                       echo "</a>\n";
-
-                      echo "<a href=\"blockUser.php?id=".$user->id."&searchInput=$pseudoSearched\">";
-                      if ($user->bloque == true){
-                        echo "<img  src=\"img/unblockIcon.svg\">";
-                      } else {
-                        echo "<img src=\"img/blockFriend.svg\">";
-                      }
-                      echo "</a>";
                     }
                   echo "</div>\n";
                 echo "</div>\n";

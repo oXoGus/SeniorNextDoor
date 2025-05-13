@@ -29,7 +29,7 @@ h1 {
     padding: 10px 20px;
     display : flex;
     flex-direction : column;
-    width: 550px;
+    width: 700px;
 }
 
 .bar {
@@ -171,3 +171,9 @@ h1 {
     border: none;
 }
 
+.msg {
+    font-weight: bold;
+    font-size: 28px;
+    color: white;
+    text-align: center;
+}

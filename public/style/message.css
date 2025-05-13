@@ -179,7 +179,7 @@ h2 {
 }
 
 .nom {
-  font-size: 2em;
+  font-size: 35px;
   width: 100%;
   word-wrap: break-word;  /*Pour le retour à la ligne*/
   margin-bottom: -50px;
@@ -190,6 +190,7 @@ h2 {
     color: white;
     display: flex;
     align-items: center;
+    border-radius: 25px;
 
 }
 
@@ -224,10 +225,16 @@ h2 {
   .message input {
     font-size:2em ;
   }
-  .Imgprofil img{
+  .Imgprofil > img{
     width: 10%;
     height: auto;
     border-radius: 50px;
+  }
+  .Imgprofil {
+    display: flex;
+    align-items: end;
+    justify-content: flex-end;
+    margin-bottom: -15px;
   }
   .msgAmi p{
     font-size: 2em;
@@ -254,6 +261,7 @@ h2 {
   }
   .liste{
     display: none;
+    padding-top: 130px;
   }
 
   .txt .rouge {
@@ -289,10 +297,13 @@ h2 {
     background-position: top;
   }
 .message input[type="text"] {
-  width: 80%;
+  width: calc(80% - 30px);
   height: 50px;
   border-radius: 40px;
   padding: 10px;
+  padding-left: 30px;
+  border: none;
+  
 }
 
 
@@ -308,3 +319,62 @@ h2 {
   }
 
   }
+
+  .INA {
+    color: #FFCC00;
+}
+
+.NPD {
+    color: rgb(255, 93, 93);
+}
+
+.ENL {
+    color: rgb(103, 211, 103);
+}
+
+.homeIcon {
+  position : absolute; 
+  top: 0px; 
+  left : 0px;
+}
+
+.userStatus {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: 25px;
+    margin-top: 7px;
+    margin: 0px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+
+.msgMoiHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.ImgprofilAmi {
+  display: flex;
+  align-items: end;
+  justify-content: flex-start;
+  margin-bottom: -15px;
+}
+
+.ImgprofilAmi > h1 {
+  padding-bottom: 7px;
+}
+
+.lienUser {
+  text-decoration: none;
+}
+
+.img-txt2:hover {
+  background-color: #8DA683;
+  transition: 0.5s;
+}
+.ImgprofilAmi > img{
+  width: 10%;
+  height: auto;
+  border-radius: 50px;
+}

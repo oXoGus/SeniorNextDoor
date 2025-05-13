@@ -40,6 +40,8 @@ CREATE TABLE utilisateur(
    FOREIGN KEY(id_ehpad) REFERENCES ehpad(id_ehpad)
 );
 
+-- admin
+INSERT INTO utilisateur (id, nom, prenom, pseudo, code_statut, id_ehpad) VALUES (0, 'Marc', 'DUPUIS', 'Marc DUPUIS', 'ENL', 1);
 
 
 CREATE TABLE compte(
@@ -50,6 +52,8 @@ CREATE TABLE compte(
    UNIQUE(id),
    FOREIGN KEY(id) REFERENCES utilisateur(id)
 );
+
+insert into compte (id, login, mdp) VALUES (0, 'Marc DUPUIS', md5('ThomasChantal'));
 
 CREATE TABLE message(
    id_emeteur integer,
@@ -69,14 +73,6 @@ CREATE TABLE ami(
    PRIMARY KEY(id_utilisateur, id_ami),
    FOREIGN KEY(id_utilisateur) REFERENCES utilisateur(id),
    FOREIGN KEY(id_ami) REFERENCES utilisateur(id)
-);
-
-CREATE TABLE bloquer(
-   id_utilisateur integer,
-   id_utilisateur_bloque integer,
-   PRIMARY KEY(id_utilisateur, id_utilisateur_bloque),
-   FOREIGN KEY(id_utilisateur) REFERENCES utilisateur(id),
-   FOREIGN KEY(id_utilisateur_bloque) REFERENCES utilisateur(id)
 );
 
 CREATE TABLE evenement(

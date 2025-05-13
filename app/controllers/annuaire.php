@@ -13,16 +13,27 @@
     // on format l'avatar pour l'affichage
     include($originDIR.'/app/models/formatUserAvatar.php');    
 
-    // si l'utilisateur est en amis avec le user
-    $query = $cnx->query("SELECT * FROM ami WHERE id_utilisateur = $id AND id_ami = ".$user->id);
     
-    // on stocke un booléen pour la view
-    $user->ami = $query->rowCount() == 1;
+    $query = $cnx->query("SELECT * FROM ami WHERE (id_utilisateur = $id AND id_ami = ".$user->id.") OR (id_utilisateur = $user->id AND id_ami = ".$id.")");
+    
+    // si les deux utilisateurs sont ami respectivement
+    if ($query->rowCount() === 2){
+      $user->ami = true;
+      $query->closeCursor();
+    } else {
+      $query = $cnx->query("SELECT * FROM ami WHERE id_utilisateur = $id AND id_ami = ".$user->id);
 
-    // on fait la meme chose pour le compte bloqué 
-    $query = $cnx->query("SELECT * FROM bloquer WHERE id_utilisateur = $id AND id_utilisateur_bloque = ".$user->id);
-    $user->bloque = $query->rowCount() == 1;
-
+      // si on à  fait une demande d'ami qui n'a pas été encore accepté 
+      if ($query->rowCount() === 1){
+        $user->ami = "demande en attente";
+        $query->closeCursor();
+      
+      } else {
+        $user->ami = false;
+        $query->closeCursor();
+      }
+    }
+  
     $userLst[] = $user;
   }
 

@@ -49,6 +49,7 @@
     }
 
     $loc = "Vie à : ".$ehpad->nom;
+    
 
     // on fait l'affichage dynamique pour l'utilisateur
     include($originDIR.'/app/views/profil.php');

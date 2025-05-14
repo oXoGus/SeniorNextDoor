@@ -35,10 +35,159 @@ html, body {
 }
 
 .profil p {
-    margin-left : 50px;
+    margin: 0px;
+    margin-left : 30px;
+    
 }
 
 .avatar {
     width: 200px;
     height: auto;
+    border-radius: 20px;
 }
+
+#notificationContainer {
+    background-color: #8DA683;
+    border: #464850 solid 16px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: calc(55%/2);
+    top: 50px;
+    width: 45%;
+}
+
+#notificationContainer h1 {
+    color: white;
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 80px;
+    margin-top: 20px;
+}
+
+#notificationContainer .msg {
+    color: white;
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.friendRequestList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    align-items: center;
+}
+
+.friendRequest {
+    margin-bottom: 30px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: #7C9473;
+}
+
+.friendRequest img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    margin: 7px;
+
+}
+
+.friendRequestInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.friendRequestInfo p {
+    color: white;
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 32px;
+    margin: 5px;
+    text-align: center;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btnAccept {
+    background-color: #A8D5B1;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 0px;
+    margin: 5px;
+}
+
+.btnAccept p {
+    color: black;
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 32px;
+    margin: 5px;
+}
+
+.btnDeny {
+    background-color: #464850;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 0px;
+    margin: 5px;
+}
+
+.btnDeny p {
+    color: white;
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 32px;
+    margin: 5px;
+}
+
+#btnCloseNotif {
+    position: absolute;
+    top: -150px;
+    right: 10px;
+    background-color: transparent;
+    width: 71px;
+    height: 71px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    background-image: url("../img/btnCloseNotif.svg");
+}
+
+#btnOpenNotif {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 170px;
+    height: 170px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+
+
+

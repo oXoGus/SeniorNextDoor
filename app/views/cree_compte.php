@@ -23,9 +23,15 @@
                     <p>Votre nom d'utilisateur</p>
                     <input type="text" name="login" required>
                     <p>Mot de passe</p>
-                    <input type="text" name="mdp" required>
+                    <div class="inputContainer">
+                        <input id="mdp" type="password" name="mdp" required>
+                        <button type="button" id="btnEye" class="btnEye" onclick="changerVisibiliteMDP('mdp', 'btnEye')" ></button>
+                    </div>
                     <p>Confirmer le mot de passe</p>
-                    <input type="text" name="mdpConf" required>
+                    <div class="inputContainer">
+                        <input id="mdpConf" type="password" name="mdpConf" required>
+                        <button type="button" id="btnEyeConf" class="btnEye" onclick="changerVisibiliteMDP('mdpConf', 'btnEyeConf')" ></button>
+                    </div>
                     <input id="submitBtn" type="submit" value="Créer votre compte">
                     
                 </div> 
@@ -41,6 +47,6 @@
         </div>
         <img src="img/waveRight.svg" alt="">
     </div>
-    
+    <script src="script/affichageMDP.js"> </script>
 </body>
 </html>

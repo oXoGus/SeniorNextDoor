@@ -13,9 +13,8 @@ body {
 .loginContainer {
     background-color: #464850;
     border-radius: 60px;
-    width: auto;
+    width: 662px;
     padding: 25px;
-    filter: drop-shadow(-4 4 15 black);
 }
 
 h2 {
@@ -130,3 +129,23 @@ form {
     height: 30px;
 }
 
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+    width: inherit;
+}
+
+.btnEye {
+    margin-left: -50px;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent;
+    background-image: url('../img/eyeClosed.svg');
+}

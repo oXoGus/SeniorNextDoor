@@ -13,9 +13,43 @@
 <body>
 <div class="profil">
     <a href="profil.php">
-    <img class="avatar" src="<?php echo $user->avatar ?>" alt="votre avatar">
-</a>
+        <img class="avatar" src="<?php echo $user->avatar ?>" alt="votre avatar">
+    </a>
     <p><b><?php echo $user->pseudo ?></b></p>
+
+    
+</div>
+    <?php
+        if (!empty($friendRequestList)){
+            echo "<button style=\"background-image: url('img/hasNotifIcon.svg');\" type=\"button\" id=\"btnOpenNotif\" onclick=\"afficher()\"></button>";
+        } else {
+            echo "<button style=\"background-image: url('img/noNotifIcon.svg');\" type=\"button\" id=\"btnOpenNotif\" onclick=\"afficher()\"></button>";
+        }
+    ?>
+<div id="notificationContainer" style="<?php if ($openNotifDirectly) {echo "display: flex";} else { echo "display: none;"; }?>">
+    <h1>NOTIFICATION<?php if (count($friendRequestList) > 1) { echo "S"; } ?></h1>
+    <div class="friendRequestList">
+        <button type="button" id="btnCloseNotif" onclick="afficher()"></button>
+        <?php
+            if (empty($friendRequestList)){
+                echo "<p class=\"msg\">Aucune demande d'ami en attente</p>";
+            } else {
+                foreach ($friendRequestList as $friendRequest){
+                    echo '<div class="friendRequest">
+                            <img src="'.$friendRequest->avatar.'">
+                            <div class="friendRequestInfo">
+                                <p>'.$friendRequest->pseudo.' vous a fait une demande d\'ami</p>
+                                <div class="btnContainer">
+                                    <a href="denyFriendRequest.php?id_ami='.$friendRequest->id.'" class="btnDeny"><p>Refuser</p></a>
+                                    <a href="acceptFriendRequest.php?id_ami='.$friendRequest->id.'" class="btnAccept"><p>Accepter</p></a>
+                                </div>
+                            </div>
+                        </div>';
+                }
+            }
+        ?>
+    </div>
+    
 </div>
 <div class="menu">
     <a href="annuaire.php"><img src="img/Annuaire.png"></a>
@@ -23,5 +57,6 @@
     <a href="message.php"><img src="img/Messages.png"></a>
 </div>
 </div>
+<script src="script/affichageNotif.js"> </script>
 </body>
 </html>

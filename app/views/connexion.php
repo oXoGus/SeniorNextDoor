@@ -19,10 +19,13 @@
             <form action="connexion.php" method="get">
             <h2 style="margin: 10px;">Connexion</h2>
                 <div style="margin: 10px;">
-                    <p>Adresse Mail</p>
-                    <input type="text" name="login" required>
+                    <p>Nom d'utilisateur</p>
+                    <input type="text" name="login" autocomplete="off" required>
                     <p>Mot de passe</p>
-                    <input type="text" name="mdp" required>
+                    <div class="inputContainer">
+                        <input id="mdp" type="password" name="mdp" required>
+                        <button type="button" id="btnEye" class="btnEye" onclick="changerVisibiliteMDP('mdp', 'btnEye')" ></button>
+                    </div>
                     <input id="submitBtn" type="submit" value="se connecter">
                 </div>
                 
@@ -38,5 +41,6 @@
         </div>
         <img src="img/waveRight.svg" alt="">
     </div>
+    <script src="script/affichageMDP.js"> </script>
 </body>
 </html>

@@ -29,7 +29,7 @@
                     </div>
                     <p>Pour changer votre avatar</p>
                     <input type="file" name="avatar" id="avatar" text="Choisir une image" accept="image/*" >
-                    <p>Une courte phrase pour vous décrire</p>
+                    <p>votre bio</p>
                     <textarea name="bio" id="" ><?php echo $user->bio ?></textarea>
                     <p>Votre statut</p>
                     <div style="display: flex; justify-content: space-around">

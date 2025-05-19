@@ -41,7 +41,7 @@ while ($message = $recuperation_msg->fetch(PDO::FETCH_OBJ)) {
     
 
     // mise en forme 
-    $message->tempsEcoule = "";
+    $message->tempsEcoule = "il y a ";
 
     if ($tempsEcoule->d > 0) {
         $message->tempsEcoule = $message->tempsEcoule . $tempsEcoule->d . ' jour' . ($tempsEcoule->d > 1 ? 's' : '');

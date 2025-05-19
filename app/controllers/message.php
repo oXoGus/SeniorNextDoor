@@ -103,7 +103,7 @@ while ($message = $recuperation_msg->fetch(PDO::FETCH_OBJ)) {
     $tempsEcoule = $maintenant->diff($dateMessage);
     
     // mise en forme 
-    $message->tempsEcoule = "";
+    $message->tempsEcoule = "il y a ";
 
     if ($tempsEcoule->d > 0) {
         $message->tempsEcoule = $message->tempsEcoule . $tempsEcoule->d . ' jour' . ($tempsEcoule->d > 1 ? 's' : '');

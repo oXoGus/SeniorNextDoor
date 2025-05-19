@@ -30,7 +30,7 @@
                 <form action="calendrier_global.php" method="GET" style="display: none;">
                     <input type="hidden" name="event_id" value="">
                     <input type="hidden" name="event_date" value="">
-                    <input type="submit" value="S'inscrire" class="button">
+                    <input type="submit" value="" class="button">
                 </form>
 
                 <?php
@@ -118,7 +118,8 @@
                     'description' => $row['desc_evenement']
                 ];
             }
-            $res = $cnx->query("SELECT date_evenement FROM calendrier_perso");
+            $id = $_SESSION['id'];
+            $res = $cnx->query("SELECT date_evenement FROM calendrier_perso WHERE id_utilisateur = $id");
             $mesDates = [];
             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                 $mesDates[] = [

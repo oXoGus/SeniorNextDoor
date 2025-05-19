@@ -61,7 +61,6 @@ while ($user = $recupUser->fetch(PDO::FETCH_OBJ)) {
 
     $listeAmi[$user->id] = $user;
 }
-$idAmi;
 
 // les info de l'ami qui est séléctionné
 if (!isset($_GET['idAmi'])) { //initialisation qui correspond a la personne qu'on veut afficher en premier quand on lance le chat
@@ -76,13 +75,14 @@ if (!isset($_GET['idAmi'])) { //initialisation qui correspond a la personne qu'o
     $idAmi = $_GET['idAmi'];
 }
 
+$_SESSION['idAmi'] = $idAmi;
+
 // les info de l'ami qui est séléctionné
 $nom = $listeAmi[$idAmi]->pseudo;
 
 
-if (isset($_POST['envoyer'])) {
-
-    $messageEnvoyer = htmlspecialchars($_POST['message']);
+if (isset($_GET['message'])) {
+    $messageEnvoyer = htmlspecialchars($_GET['message']);
     include($originDIR."/app/models/envoyerMessage.php");
 }
 
@@ -91,6 +91,34 @@ include($originDIR."/app/models/recupMessage.php");
 
 while ($message = $recuperation_msg->fetch(PDO::FETCH_OBJ)) {
     $listeMsg[] = $message;
+
+    // mise en forme du timestamps du message
+    
+    $maintenant = new DateTime('now', new DateTimeZone('Europe/Paris'));
+    
+    // on récup et convertit le timestamp de la db en timestamps php
+    $dateMessage = DateTime::createFromFormat('Y-m-d H:i:s.u', $message->date_message, new DateTimeZone('Europe/Paris'));
+
+    // différence des timestamps pour voir le temps écoulé depuis l'envoie du message
+    $tempsEcoule = $maintenant->diff($dateMessage);
+    
+    // mise en forme 
+    $message->tempsEcoule = "il y a ";
+
+    if ($tempsEcoule->d > 0) {
+        $message->tempsEcoule = $message->tempsEcoule . $tempsEcoule->d . ' jour' . ($tempsEcoule->d > 1 ? 's' : '');
+    }
+
+    if ($tempsEcoule->h > 0) {
+        $message->tempsEcoule = $message->tempsEcoule . ($tempsEcoule->d > 0 ? " et " : "") . $tempsEcoule->h . ' heure' . ($tempsEcoule->h > 1 ? 's' : '');
+    }
+
+    if ($tempsEcoule->i > 0) {
+        $message->tempsEcoule = $message->tempsEcoule . ($tempsEcoule->h > 0 ? " et " : "") . $tempsEcoule->i . ' minute' . ($tempsEcoule->i > 1 ? 's' : '');
+    } else {
+        $message->tempsEcoule = " il y a quelque secondes";
+    }
+
 }
 
 // on fait l'affichage dynamique pour l'utilisateur

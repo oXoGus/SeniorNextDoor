@@ -68,12 +68,12 @@
             echo '<div class="msgMoi">
           <div class="Imgprofil"><h1>Vous</h1><img src="'.$userInfo->avatar.'" /></div>
           <p><b>' . $message->contenu_message . '</b>';
-           echo '</br> <i class="info">'.$vue." ". $message->date_message. ' </i> </p> </div>';
-          } else {
+          echo '</br> <b><i class="info"> envoyé ' . $message->tempsEcoule. ($vue === "" ? "" : " - " ) . $vue .'</i></b> </p> </div>';
+        } else {
             echo '<div class="msgAmi">
           <div class="ImgprofilAmi"><img src="'.$listeAmi[$idAmi]->avatar.'" /><h1>'.$listeAmi[$idAmi]->pseudo.'</h1></div>
           <p><b>' . $message->contenu_message . '</b>';
-          echo '</br> <i class="info"> '. $message->date_message. '</i> </p> </div>';
+          echo '</br> <b><i class="info">reçu '. $message->tempsEcoule. '</i></b></p> </div>';
 
           }
         }
@@ -81,9 +81,10 @@
       ?>
       </div>
       <div class="message">
-        <form method="POST" action="message.php">
+        <form method="GET" action="message.php">
           <?php
-          echo '<input type="text" placeholder="écrire à ' . $listeAmi[$idAmi]->pseudo . ' ..." name="message" />'
+          echo '<input type="text" placeholder="écrire à ' . $listeAmi[$idAmi]->pseudo . ' ..." name="message" autocomplete="off" />';
+          echo '<input type="hidden" name="idAmi" value="'.$idAmi.'">';
             ?>
           <input type="submit" name="envoyer" value="">
         </form>

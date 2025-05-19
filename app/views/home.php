@@ -53,7 +53,7 @@
 </div>
 <div class="menu">
     <a href="annuaire.php"><img src="img/Annuaire.png"></a>
-    <a href="CalendrierGlobal.html"><img src="img/Calendrier.png"></a>
+    <a href="calendrier_global.php"><img src="img/Calendrier.png"></a>
     <a href="message.php"><img src="img/Messages.png"></a>
 </div>
 </div>

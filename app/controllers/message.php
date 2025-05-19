@@ -97,7 +97,7 @@ while ($message = $recuperation_msg->fetch(PDO::FETCH_OBJ)) {
     $maintenant = new DateTime('now', new DateTimeZone('Europe/Paris'));
     
     // on récup et convertit le timestamp de la db en timestamps php
-    $dateMessage = DateTime::createFromFormat('Y-m-d H:i:s.u', $message->date_message);
+    $dateMessage = DateTime::createFromFormat('Y-m-d H:i:s.u', $message->date_message, new DateTimeZone('Europe/Paris'));
 
     // différence des timestamps pour voir le temps écoulé depuis l'envoie du message
     $tempsEcoule = $maintenant->diff($dateMessage);
@@ -113,8 +113,10 @@ while ($message = $recuperation_msg->fetch(PDO::FETCH_OBJ)) {
         $message->tempsEcoule = $message->tempsEcoule . ($tempsEcoule->d > 0 ? " et " : "") . $tempsEcoule->h . ' heure' . ($tempsEcoule->h > 1 ? 's' : '');
     }
 
-    if ($tempsEcoule->i >= 0) {
+    if ($tempsEcoule->i > 0) {
         $message->tempsEcoule = $message->tempsEcoule . ($tempsEcoule->h > 0 ? " et " : "") . $tempsEcoule->i . ' minute' . ($tempsEcoule->i > 1 ? 's' : '');
+    } else {
+        $message->tempsEcoule = " il y a quelque secondes";
     }
 
 }

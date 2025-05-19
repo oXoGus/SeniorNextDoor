@@ -51,8 +51,10 @@ while ($message = $recuperation_msg->fetch(PDO::FETCH_OBJ)) {
         $message->tempsEcoule = $message->tempsEcoule . ($tempsEcoule->d > 0 ? " et " : "") . $tempsEcoule->h . ' heure' . ($tempsEcoule->h > 1 ? 's' : '');
     }
 
-    if ($tempsEcoule->i >= 0) {
+    if ($tempsEcoule->i > 0) {
         $message->tempsEcoule = $message->tempsEcoule . ($tempsEcoule->h  > 0 ? " et " : "") . $tempsEcoule->i . ' minute' . ($tempsEcoule->i > 1 ? 's' : '');
+    } else {
+        $message->tempsEcoule = " il y a quelque secondes";
     }
 
     $vue="";
@@ -63,12 +65,12 @@ while ($message = $recuperation_msg->fetch(PDO::FETCH_OBJ)) {
         echo '<div class="msgMoi">
         <div class="Imgprofil"><h1>Vous</h1><img src="'.$userInfo->avatar.'" /></div>
         <p><b>' . $message->contenu_message . '</b>';
-        echo '</br> <i class="info">'. $message->tempsEcoule. '</i> </p> </div>';
+        echo '</br> <b><i class="info"> envoyé ' . $message->tempsEcoule. ($vue === "" ? "" : " - " ) . $vue .'</i></b> </p> </div>';
     } else {
         echo '<div class="msgAmi">
         <div class="ImgprofilAmi"><img src="'.$friendInfo->avatar.'" /><h1>'.$friendInfo->pseudo.'</h1></div>
         <p><b>' . $message->contenu_message . '</b>';
-        echo '</br> <i class="info"> '. $message->tempsEcoule.'</i> </p> </div>';
+        echo '</br> <b><i class="info"> reçu '. $message->tempsEcoule.'</i></b> </p> </div>';
     }
 }
 ?>

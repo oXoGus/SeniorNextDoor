@@ -26,6 +26,7 @@
 
                 <h2></h2>
                 <p></p>
+                <p class="nb_inscrit"></p>
 
                 <form action="calendrier_global.php" method="GET" style="display: none;">
                     <input type="hidden" name="event_id" value="">
@@ -108,14 +109,15 @@
     </main>
     <?php
         try {
-            $res = $cnx->query("SELECT c.date_evenement , c.id_evenement , e.titre_evenement , e.desc_evenement FROM calendrier_global c JOIN evenement e ON c.id_evenement = e.id_evenement");
+            $res = $cnx->query("SELECT c.date_evenement , c.id_evenement, c.nb_inscrit , e.titre_evenement , e.desc_evenement FROM calendrier_global c JOIN evenement e ON c.id_evenement = e.id_evenement");
             $infos = [];
             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                 $infos[] = [
                     'date' => $row['date_evenement'],
                     'id' => $row['id_evenement'],
                     'titre' => $row['titre_evenement'],
-                    'description' => $row['desc_evenement']
+                    'description' => $row['desc_evenement'],
+                    'nb_inscrit' => $row['nb_inscrit']
                 ];
             }
             $id = $_SESSION['id'];
@@ -141,6 +143,7 @@
             const dateElements = document.querySelectorAll("#dates .date");
             const eventTitle = document.querySelector(".event-details-global h2");
             const eventDescription = document.querySelector(".event-details-global .description p");
+            const eventInscrit = document.querySelector(".event-details-global .description .nb_inscrit");
             const message = document.querySelector('.event-details-global .message');
             const form = document.querySelector(".event-details-global form");
 
@@ -160,12 +163,14 @@
                         }
                         eventTitle.textContent = event.titre + " le " + dateElement.getAttribute("title");
                         eventDescription.textContent = event.description;
+                        eventInscrit.textContent = "nombre d'inscrits: " + event.nb_inscrit;
                         form.querySelector("input[name='event_date']").value = event.date;
                         form.querySelector("input[name='event_id']").value = event.id;
                         form.style.display = "block";
                     } else {
                         eventTitle.textContent = dateElement.getAttribute("title");
                         eventDescription.textContent = "aucun evénement trouvé";
+                        eventInscrit.textContent = "";
                         form.style.display = "none";
                     }
                 });

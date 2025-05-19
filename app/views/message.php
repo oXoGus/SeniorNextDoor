@@ -81,9 +81,10 @@
       ?>
       </div>
       <div class="message">
-        <form method="POST" action="message.php">
+        <form method="GET" action="message.php">
           <?php
-          echo '<input type="text" placeholder="écrire à ' . $listeAmi[$idAmi]->pseudo . ' ..." name="message" />'
+          echo '<input type="text" placeholder="écrire à ' . $listeAmi[$idAmi]->pseudo . ' ..." name="message" autocomplete="off" />';
+          echo '<input type="hidden" name="idAmi" value="'.$idAmi.'">';
             ?>
           <input type="submit" name="envoyer" value="">
         </form>

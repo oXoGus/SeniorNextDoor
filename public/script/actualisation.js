@@ -9,6 +9,6 @@ setInterval(function () {
       message_box.innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "/SeniorNextDoor/public/ajax/actualisationMsg.php?idAmi=" + idAmi, true);
+  xhttp.open("GET", "/SeniorNextDoor/ajax/actualisationMsg.php?idAmi=" + idAmi, true);
   xhttp.send();
 }, 500);

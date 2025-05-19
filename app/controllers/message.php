@@ -61,7 +61,6 @@ while ($user = $recupUser->fetch(PDO::FETCH_OBJ)) {
 
     $listeAmi[$user->id] = $user;
 }
-$idAmi;
 
 // les info de l'ami qui est séléctionné
 if (!isset($_GET['idAmi'])) { //initialisation qui correspond a la personne qu'on veut afficher en premier quand on lance le chat
@@ -76,13 +75,14 @@ if (!isset($_GET['idAmi'])) { //initialisation qui correspond a la personne qu'o
     $idAmi = $_GET['idAmi'];
 }
 
+$_SESSION['idAmi'] = $idAmi;
+
 // les info de l'ami qui est séléctionné
 $nom = $listeAmi[$idAmi]->pseudo;
 
 
-if (isset($_POST['envoyer'])) {
-
-    $messageEnvoyer = htmlspecialchars($_POST['message']);
+if (isset($_GET['message'])) {
+    $messageEnvoyer = htmlspecialchars($_GET['message']);
     include($originDIR."/app/models/envoyerMessage.php");
 }
 

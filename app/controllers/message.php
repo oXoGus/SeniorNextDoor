@@ -91,6 +91,32 @@ include($originDIR."/app/models/recupMessage.php");
 
 while ($message = $recuperation_msg->fetch(PDO::FETCH_OBJ)) {
     $listeMsg[] = $message;
+
+    // mise en forme du timestamps du message
+    
+    $maintenant = new DateTime('now', new DateTimeZone('Europe/Paris'));
+    
+    // on récup et convertit le timestamp de la db en timestamps php
+    $dateMessage = DateTime::createFromFormat('Y-m-d H:i:s.u', $message->date_message);
+
+    // différence des timestamps pour voir le temps écoulé depuis l'envoie du message
+    $tempsEcoule = $maintenant->diff($dateMessage);
+    
+    // mise en forme 
+    $message->tempsEcoule = "";
+
+    if ($tempsEcoule->d > 0) {
+        $message->tempsEcoule = $message->tempsEcoule . $tempsEcoule->d . ' jour' . ($tempsEcoule->d > 1 ? 's' : '');
+    }
+
+    if ($tempsEcoule->h > 0) {
+        $message->tempsEcoule = $message->tempsEcoule . ($tempsEcoule->d > 0 ? " et " : "") . $tempsEcoule->h . ' heure' . ($tempsEcoule->h > 1 ? 's' : '');
+    }
+
+    if ($tempsEcoule->i >= 0) {
+        $message->tempsEcoule = $message->tempsEcoule . ($tempsEcoule->h > 0 ? " et " : "") . $tempsEcoule->i . ' minute' . ($tempsEcoule->i > 1 ? 's' : '');
+    }
+
 }
 
 // on fait l'affichage dynamique pour l'utilisateur

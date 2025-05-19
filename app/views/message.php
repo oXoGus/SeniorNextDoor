@@ -68,12 +68,12 @@
             echo '<div class="msgMoi">
           <div class="Imgprofil"><h1>Vous</h1><img src="'.$userInfo->avatar.'" /></div>
           <p><b>' . $message->contenu_message . '</b>';
-           echo '</br> <i class="info">'.$vue." ". $message->date_message. ' </i> </p> </div>';
+           echo '</br> <i class="info">'.$vue." ". $message->tempsEcoule. ' </i> </p> </div>';
           } else {
             echo '<div class="msgAmi">
           <div class="ImgprofilAmi"><img src="'.$listeAmi[$idAmi]->avatar.'" /><h1>'.$listeAmi[$idAmi]->pseudo.'</h1></div>
           <p><b>' . $message->contenu_message . '</b>';
-          echo '</br> <i class="info"> '. $message->date_message. '</i> </p> </div>';
+          echo '</br> <i class="info"> '. $message->tempsEcoule. '</i> </p> </div>';
 
           }
         }

@@ -99,12 +99,20 @@ main {
 
 .event-details-global .description h2 {
     text-align: center;
-    font-size: 40px;
+    font-size: 4em;
     font-weight: bold;
 }
 
+.event-details-global .message {
+    font-size: 4em;
+    font-weight: bold;
+    padding-left: 10%;
+    padding-right: 10%;
+    justify-content: center;
+}
+
 .event-details-global .description p {
-    font-size: 20px;
+    font-size: 2em;
     font-weight: bold;
     padding-left: 10%;
     padding-right: 10%;
@@ -251,4 +259,88 @@ main {
 .date.inactive {
     background-color: #f0f0f0;
     color: #ccc;
+}
+
+
+[type="checkbox"] {
+  display: none;
+} 
+.fond {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 300ms;
+}
+.pop_up {
+  width: 50%;
+  border-radius: 15px;
+  height: 70%;
+  position: relative;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+  align-content: center;    
+  box-shadow: 0 0 10px rgba(0, 0, 0, 4);
+}
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  padding: 2px 8px;
+  cursor: pointer;
+  color: rgb(66, 66, 66);
+font-size: 30px;
+  font-weight: bold;
+}
+
+#check_pop_up ~ .fond {
+  opacity: 0;
+  cursor: pointer;
+  pointer-events: none;
+
+}
+
+#check_pop_up:checked ~ .fond {
+  opacity: 1;
+  pointer-events: all;
+}
+.btn {
+    display: flex;
+    background-color: #A8D5B1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 2em;
+    cursor: pointer;
+    border-radius: 5px;
+    justify-content: center;
+    align-self: center;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+    margin-top: 3%;
+    box-shadow: 0px 4px 20px;
+}
+#event-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    width: 50%;
+    height: 100%;
+}
+#event-form label {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+#event-form input {
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #c1c1c1;
 }

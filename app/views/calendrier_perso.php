@@ -37,65 +37,68 @@
                 <div class="day">Dim</div>
             </div>
             <div class="dates" id="dates"></div>
-            <p>Créer événement</p>
-            <div id="event-form-container">
+            <input type="checkbox" id="check_pop_up" />
+            <label for="check_pop_up" class="btn">Nouvel évenement</label>
+            
+            <div class="fond">
+                <div class="pop_up">
+                    <label for="check_pop_up" class="close"> X </label>
+                    <form id="event-form" method="GET" action="calendrier_perso.php">
+                        <label for="event-title">Titre de l'événement:</label>
+                        <input type="text" id="event_title" name="event_title" required><br><br>
+                            
+                        <label for="event_date">Date de l'événement:</label>
+                        <input type="date" id="event_date" name="event_date" required><br><br>
+                            
+                        <label for="event_description">Description:</label>
+                        <textarea id="event_description" name="event_description" optional></textarea><br><br>
+                            
+                        <button type="submit">Créer</button>
+                    </form>
+                </div>
+            </div>
+            <?php
+                if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['event_title']) && isset($_GET['event_date'])) {
+                    $eventTitle = $_GET['event_title'];
+                    $eventDate = date('Y-m-d', strtotime($_GET['event_date'] . ' -1 day'));
+                    $eventDescription = $_GET['event_description'];
 
-                <form id="event-form" method="GET" action="calendrier_perso.php">
-                    <label for="event-title">Titre de l'événement:</label>
-                    <input type="text" id="event_title" name="event_title" required>
-                    
-                    <label for="event_date">Date de l'événement:</label>
-                    <input type="date" id="event_date" name="event_date" required>
-                    
-                    <label for="event_description">Description:</label>
-                    <textarea id="event_description" name="event_description" optional></textarea>
-                    
-                    <button type="submit">Créer</button>
-                    <button type="button" id="cancel-event-btn">Annuler</button>
-                </form>
-                <?php
-                    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['event_title']) && isset($_GET['event_date'])) {
-                        $eventTitle = $_GET['event_title'];
-                        $eventDate = date('Y-m-d', strtotime($_GET['event_date'] . ' -1 day'));
-                        $eventDescription = $_GET['event_description'];
+                    $res = $cnx->prepare("SELECT * from calendrier_perso WHERE id_utilisateur = :user_id AND date_evenement = :event_date");
+                    $res->execute([
+                                    ':user_id' => $_SESSION['id'], 
+                                    ':event_date' => $eventDate,
+                                ]);
 
-                        $res = $cnx->prepare("SELECT * from calendrier_perso WHERE id_utilisateur = :user_id AND date_evenement = :event_date");
+                    if ($res->rowCount() == 1){
+                        echo "<p class='message'>Vous avez déjà un événement à cette date !</p>";
+                    }
+                    else {
+                        try {
+                        $res = $cnx->prepare("INSERT INTO evenement (titre_evenement, desc_evenement, nom_image) VALUES (:event_title, :event_description, 'default.jpg')");
                         $res->execute([
-                                        ':user_id' => $_SESSION['id'], 
-                                        ':event_date' => $eventDate,
+                                        ':event_title' => $eventTitle, 
+                                        ':event_description' => $eventDescription,
                                     ]);
-
-                        if ($res->rowCount() == 1){
-                            echo "<p class='message'>Vous avez déjà un événement à cette date !</p>";
+                                echo "<p class='message'>création de l'événement reussie !</p>";
+                        } catch (PDOException $e) {
+                            error_log("Failed to insert entry: " . $e->getMessage());
+                            echo "<p class='message'>Erreur lors de la création de l'événement.</p>";
                         }
-                        else {
-                            try {
-                            $res = $cnx->prepare("INSERT INTO evenement (titre_evenement, desc_evenement, nom_image) VALUES (:event_title, :event_description, 'default.jpg')");
-                            $res->execute([
-                                            ':event_title' => $eventTitle, 
-                                            ':event_description' => $eventDescription,
-                                        ]);
-                                    echo "<p class='message'>création de l'événement reussie !</p>";
-                            } catch (PDOException $e) {
-                                error_log("Failed to insert entry: " . $e->getMessage());
-                                echo "<p class='message'>Erreur lors de la création de l'événement.</p>";
-                            }
-                            try {
-                            $res = $cnx->prepare("INSERT INTO calendrier_perso (id_utilisateur, date_evenement, id_evenement) VALUES (:user_id,:event_date, :event_id)");
-                                    $res->execute([
-                                        ':user_id' => $_SESSION['id'], 
-                                        ':event_date' => $eventDate,
-                                        ':event_id' => $cnx->lastInsertId(),
-                                    ]);
-                            } catch (PDOException $e) {
-                                error_log("Failed to insert entry: " . $e->getMessage());
-                                echo "<p class='message'>Erreur lors de l'ajout de l'événement au calendrier personnel.</p>";
-                            }
+                        try {
+                        $res = $cnx->prepare("INSERT INTO calendrier_perso (id_utilisateur, date_evenement, id_evenement) VALUES (:user_id,:event_date, :event_id)");
+                                $res->execute([
+                                    ':user_id' => $_SESSION['id'], 
+                                    ':event_date' => $eventDate,
+                                    ':event_id' => $cnx->lastInsertId(),
+                                ]);
+                         } catch (PDOException $e) {
+                            error_log("Failed to insert entry: " . $e->getMessage());
+                            echo "<p class='message'>Erreur lors de l'ajout de l'événement au calendrier personnel.</p>";
                         }
                     }
-                ?>
+                }
+            ?>
                         
-            </div>
 
         </section>
         <section class="event-details-perso">
@@ -106,7 +109,7 @@
                 <form action="calendrier_perso.php" method="GET" style="display: none;">
                     <input type="hidden" name="event_id" value="">
                     <input type="hidden" name="event_date" value="">
-                    <input type="submit" value="Supprimer cet evenement" class="button">
+                    <input type="submit" value="Supprimer cet évenement" class="button">
                 </form>
 
                 <?php
@@ -131,7 +134,7 @@
                                         ':event_date' => $eventDate,
                                     ]);
 
-                                echo "<p class='message'>suppression reussie !</p>";
+                                echo "<p class='message'>suppression réussie !</p>";
 
                             } catch (PDOException $e) {
                                 error_log("Failed to insert entry: " . $e->getMessage());

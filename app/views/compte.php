@@ -15,6 +15,9 @@
 <body>
     
     <div class="fexRowCenter">
+
+        <a id="btnBack" href="profil.php"><img src="img/btnBack.svg" alt=""></a>
+
         <img src="img/waveLeft.svg" alt="">
         <div class="loginContainer" >
             <!-- ne pas oublier le enctype="multipart/form-data" et le post pour upload l'avatar-->
@@ -63,7 +66,6 @@
             ?>
         </div>
         <img src="img/waveRight.svg" alt="">
-        <a href="profil.php"><img id="btnBack" src="img/btnBack.svg" alt=""></a>
     </div>
 </body>
 </html>

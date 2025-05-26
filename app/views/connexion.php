@@ -37,7 +37,6 @@
                     unset($err);
                 }
             ?>
-            <p style="text-align: center;">Je n'ai pas de compte ? <a href="cree_compte.php">Créer un compte</a></p>
         </div>
         <img src="img/waveRight.svg" alt="">
     </div>

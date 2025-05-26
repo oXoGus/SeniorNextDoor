@@ -7,10 +7,20 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 100vh;
     justify-content: space-between;
 }
 
+.fexRowCenter img {
+    width: auto;
+    height: 100%;
+}
+
 .loginContainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background-color: #464850;
     border-radius: 60px;
     width: 662px;

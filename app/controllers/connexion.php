@@ -28,7 +28,7 @@ session_start();
         $_SESSION['id'] = $val->id;
 
         // on redirect l'utilisateur sur la page home
-        header('location: /SeniorNextDoor/home.php');
+        header('location: home.php');
         exit;
     }
     // si l'utilisateur n'a pas envoyé le form

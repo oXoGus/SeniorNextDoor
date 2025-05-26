@@ -11,6 +11,6 @@
         // on redirige l'utilisateur sur la page de l'annuaire
         // avec le pseudo cherché pour garder la recherche 
         $pseudoSearched = $_GET['searchInput'];
-        header("location: /SeniorNextDoor/annuaire.php?searchInput=$pseudoSearched");
+        header("location: annuaire.php?searchInput=$pseudoSearched");
     }
 ?>

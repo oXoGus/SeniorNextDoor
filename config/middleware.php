@@ -19,10 +19,10 @@ session_start(); // ATTENTION : ne pas mettre d'espace ou de tab avant le sessio
             // on laisse l'utilisateur aller sur la page
         }
         else {
-            header('location: /SeniorNextDoor/connexion.php');
+            header('location: connexion.php');
         }
     }
     else {
-        header('location: /SeniorNextDoor/connexion.php');
+        header('location: connexion.php');
     }
 ?>

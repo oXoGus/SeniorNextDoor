@@ -10,6 +10,6 @@
 
         // on redirige l'utilisateur sur la page home 
         // avec le menu des notification ouvert 
-        header("location: /SeniorNextDoor/home.php?openNotif=1");
+        header("location: home.php?openNotif=1");
     }
 ?>

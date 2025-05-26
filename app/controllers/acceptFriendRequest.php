@@ -10,6 +10,6 @@
 
         // on redirige l'utilisateur sur la page de l'annuaire
         // avec le pseudo cherché pour garder la recherche 
-        header("location: /SeniorNextDoor/message.php?idAmi=$id_ami");
+        header("location: message.php?idAmi=$id_ami");
     }
 ?>

@@ -61,10 +61,10 @@
       if (isset($listeMsg)) {
         foreach ($listeMsg as $message) {
           $vue="";
-          if ($message->vue === 0){
+          if ($message->vue === 0){ // si le message n'as pas encore été vue
             $vue="pas encore vue";
           }
-          if ($message->id_emeteur == $id) {
+          if ($message->id_emeteur == $id) { // si c'est moi qui ai envoyé le message
             echo '<div class="msgMoi">
           <div class="Imgprofil"><h1>Vous</h1><img src="'.$userInfo->avatar.'" /></div>
           <p><b>' . $message->contenu_message . '</b>';
